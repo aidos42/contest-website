@@ -1,13 +1,18 @@
 import express from 'express';
 // eslint-disable-next-line import/extensions
-import Clip from '../models/clip.js';
+import { Clip, User } from '../models/models.js';
 
 const routes = express.Router();
 
 routes.get('/home', async (req, res) => {
-  const clips = await Clip.find({});
+  console.log(`session: ${req.session.loggedin}`);
+  if (req.session.loggedin) {
+    const clips = await Clip.find({});
 
-  res.render('index', { clips });
+    res.render('index', { clips });
+  } else {
+    res.redirect(303, '/login');
+  }
 });
 
 routes.get('/login', async (req, res) => {
@@ -15,7 +20,31 @@ routes.get('/login', async (req, res) => {
 });
 
 routes.get('/', async (req, res) => {
-  res.redirect(303, '/home');
+  console.log(`session: ${req.session.loggedin}`);
+  if (req.session.loggedin) {
+    res.redirect(303, '/home');
+  } else {
+    res.redirect(303, '/login');
+  }
+});
+
+routes.post('/auth', async (req, res) => {
+  const { username } = req.body;
+  const { password } = req.body;
+  console.log(`session: ${req.session.loggedin}`);
+
+  if (username && password) {
+    await User.findOne({ username }, 'password', (err) => {
+      if (err) {
+        res.send('Неправильный пароль');
+        return console.err(err);
+      }
+
+      req.session.loggedin = true;
+
+      return res.redirect('/home');
+    }).clone().catch((err) => { console.log(err); });
+  }
 });
 
 routes.post('/new-clip', (req, res) => {

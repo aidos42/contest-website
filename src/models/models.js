@@ -15,4 +15,12 @@ const clipSchema = new Schema(
   },
 );
 
-export default connection.model('Clip', clipSchema);
+const userSchema = new Schema(
+  {
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+  },
+);
+
+export const Clip = connection.model('Clip', clipSchema);
+export const User = connection.model('User', userSchema);
