@@ -24,6 +24,8 @@ html
                 li.tm-nav-item
                   a.tm-nav-item-link(href='#gallery') Галерея роликов
                 li.tm-nav-item
+                  a.tm-nav-item-link(href='#vote') Голосование
+                li.tm-nav-item
                   a.tm-nav-item-link(href='#submit') Отправить ролик
           // Left column: logo and menu
           // Right column: content
@@ -44,14 +46,18 @@ html
                 header
                   h2.tm-blue-text.tm-section-title.tm-margin-b-30 Галерея роликов
                 .tm-gallery-container.tm-gallery-1
-                  .tm-img-container.tm-img-container-1
-                    iframe(width='560' height='315' src='https://www.youtube.com/embed/pMpxAyh_wcE' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
-                  .tm-img-container.tm-img-container-1
-                    iframe(width='560' height='315' src='https://www.youtube.com/embed/-5db2bOtVJ8' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
-                  .tm-img-container.tm-img-container-1
-                    iframe(width='560' height='315' src='https://www.youtube.com/embed/-5db2bOtVJ8' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
-                  .tm-img-container.tm-img-container-1
-                    iframe(width='560' height='315' src='https://www.youtube.com/embed/-5db2bOtVJ8' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+                  each clip in clips
+                    .tm-img-container.tm-img-container-1
+                      p.tm-participant Участник: !{clip.name}
+                      iframe(width='560' height='315' src=clip.clipUrl title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+              
+              // Vote section
+              section#vote.tm-section  
+                header
+                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Голосование
+                .tm-vote
+                  iframe(src='https://docs.google.com/forms/d/e/1FAIpQLScamV186lXQEraWxDeiWJ6bI5IEyPxKEzJwCDFQMyInEqUImA/viewform?embedded=true' width='640' height='786' frameborder='0' marginheight='0' marginwidth='0')
+
               // Submit section
               section#submit.tm-section
                 header

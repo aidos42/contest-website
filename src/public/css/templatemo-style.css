@@ -130,6 +130,24 @@ textarea:-ms-input-placeholder {
 
 .tm-contact-right {	padding-left: 15px; }
 
+.tm-participant { font-size: 0.9rem;; }
+
+.tm-vote {
+  overflow: visible;
+  position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 25px;
+	height: 0;
+}
+
+.tm-vote iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
 /* Media Queries */
 @media (min-width: 576px) {
 	.container { width: 100%; }

@@ -20,9 +20,8 @@ app.use(express.static(path.join(customDirname, 'public')));
 
 app.get('/', async (req, res) => {
   const clips = await Clip.find({});
-  console.log(clips);
 
-  res.render('index');
+  res.render('index', { clips });
 });
 
 app.post('/new-clip', (req, res) => {
