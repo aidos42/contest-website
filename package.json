@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "type": "module",
+  "engines": {
+    "node": "16.13.2"
+  },
   "scripts": {
     "start": "node src/index.js",
     "start:dev": "nodemon src/index.js"

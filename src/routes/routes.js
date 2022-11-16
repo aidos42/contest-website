@@ -5,7 +5,6 @@ import { Clip, User } from '../models/models.js';
 const routes = express.Router();
 
 routes.get('/home', async (req, res) => {
-  console.log(`session: ${req.session.loggedin}`);
   if (req.session.loggedin) {
     const clips = await Clip.find({});
 
@@ -20,7 +19,6 @@ routes.get('/login', async (req, res) => {
 });
 
 routes.get('/', async (req, res) => {
-  console.log(`session: ${req.session.loggedin}`);
   if (req.session.loggedin) {
     res.redirect(303, '/home');
   } else {
@@ -31,7 +29,6 @@ routes.get('/', async (req, res) => {
 routes.post('/auth', async (req, res) => {
   const { username } = req.body;
   const { password } = req.body;
-  console.log(`session: ${req.session.loggedin}`);
 
   if (username && password) {
     await User.findOne({ username }, 'password', (err) => {

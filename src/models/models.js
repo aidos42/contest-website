@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 
-const connection = mongoose.createConnection(process.env.MONGO_URL);
+const connection = mongoose.createConnection(process.env.MONGODB_URI);
 
 const { Schema } = mongoose;
 
