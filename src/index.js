@@ -11,7 +11,8 @@ dotenv.config();
 const filename = fileURLToPath(import.meta.url);
 const customDirname = dirname(filename);
 
-const PORT = process.env.port ?? 4242;
+const PORT = process.env.port ?? 8080;
+const HOST = '0.0.0.0';
 const oneDay = 1000 * 60 * 60 * 24;
 
 const app = express();
@@ -32,6 +33,6 @@ app.use(express.static(path.join(customDirname, 'public')));
 
 app.use(routes);
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
   console.log(`Server has been started on port: ${PORT}`);
 });
