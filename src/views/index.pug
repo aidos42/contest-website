@@ -1,0 +1,96 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Конкурс Unistream
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400')
+    link(rel='stylesheet' href='css/bootstrap.min.css')
+    link(rel='stylesheet' href='css/magnific-popup.css')
+    link(rel='stylesheet' href='css/templatemo-style.css')
+  body
+    .container
+      .row
+        .tm-left-right-container
+          // Left column: logo and menu
+          .tm-yellow-bg.tm-left-column
+            .tm-logo-div.text-xs-center
+              img(src='img/logo.svg' alt='Logo')
+            nav.tm-main-nav
+              ul.tm-main-nav-ul
+                li.tm-nav-item
+                  a.tm-nav-item-link(href='#about') О конкурсе
+                li.tm-nav-item
+                  a.tm-nav-item-link(href='#gallery') Галерея роликов
+                li.tm-nav-item
+                  a.tm-nav-item-link(href='#submit') Отправить ролик
+          // Left column: logo and menu
+          // Right column: content
+          .tm-right-column
+            .tm-content-div
+              // About section
+              section#about.tm-section
+                .row
+                  .col-lg-8.col-md-7.col-sm-12.col-xs-12.push-lg-4.push-md-5
+                    header
+                      h2.tm-blue-text.tm-section-title.tm-margin-b-45 О конкурсе
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  .col-lg-4.col-md-5.col-sm-12.col-xs-12.pull-lg-8.pull-md-7.tm-about-img-container
+                    img.img-fluid(src='img/neaty-02.jpg' alt='Image')
+              // Gallery section
+              section#gallery.tm-section
+                header
+                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Галерея роликов
+                .tm-gallery-container.tm-gallery-1
+                  .tm-img-container.tm-img-container-1
+                    iframe(width='560' height='315' src='https://www.youtube.com/embed/pMpxAyh_wcE' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+                  .tm-img-container.tm-img-container-1
+                    iframe(width='560' height='315' src='https://www.youtube.com/embed/-5db2bOtVJ8' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+                  .tm-img-container.tm-img-container-1
+                    iframe(width='560' height='315' src='https://www.youtube.com/embed/-5db2bOtVJ8' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+                  .tm-img-container.tm-img-container-1
+                    iframe(width='560' height='315' src='https://www.youtube.com/embed/-5db2bOtVJ8' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+              // Submit section
+              section#submit.tm-section
+                header
+                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Отправить ролик
+                .row
+                  .col-lg-6
+                    form.contact-form(action='/new-clip' method='post')
+                      .form-group
+                        input#contact_name.form-control(type='text' name='contact_name' placeholder='Имя' required='')
+                      .form-group
+                        input#contact_email.form-control(type='email' name='contact_email' placeholder='Email' required='')
+                      .form-group
+                        textarea#contact_message.form-control(name='contact_message' rows='3' placeholder='Ссылка на Youtube' required='')
+                      button.float-right.tm-button(type='submit') Отправить
+                  .col-lg-6.tm-contact-right
+                    p
+                      | Nullam vivera fermentum purus id blandit. Phasellus lacus mi, porta vel sodales nec, faucibus non eros. Nulla at quam vel risus laoreet tincidunt in in sem.
+          // Right column: content
+          // row
+          // container
+          // load JS files
+          script(src='js/jquery-1.11.3.min.js')
+          // jQuery (https://jquery.com/download/)
+          script(src='js/jquery.magnific-popup.min.js')
+          // Magnific pop-up (http://dimsemenov.com/plugins/magnific-popup/)
+          script(src='js/jquery.singlePageNav.min.js')
+          // Single Page Nav (https://github.com/ChrisWojcik/single-page-nav)
+          script.
+            $(document).ready(function(){
+            // Single page nav
+            $('.tm-main-nav').singlePageNav({
+            'currentClass' : "active",
+            offset : 20
+            });
+            // Magnific pop up
+            $('.tm-gallery-1').magnificPopup({
+            delegate: 'a', // child items selector, by clicking on it popup will open
+            type: 'image',
+            gallery: {enabled:true}
+            // other options
+            });
+            });
