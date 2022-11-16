@@ -56,6 +56,10 @@ p { line-height: 2; }
 	padding: 18px 35px;
 }
 
+.tm-button.tm-login-button {
+  padding: 6px 12px;
+}
+
 .tm-button:hover,
 .tm-button:active,
 .tm-button:focus {

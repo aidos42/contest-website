@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Конкурс Unistream
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400')
+    link(rel='stylesheet' href='css/bootstrap.min.css')
+    link(rel='stylesheet' href='css/magnific-popup.css')
+    link(rel='stylesheet' href='css/templatemo-style.css')
+  body
+    .container
+      .row
+        .tm-left-right-container
+          // Left column: logo and menu
+          .tm-yellow-bg.tm-left-column
+            .tm-logo-div.text-xs-center
+              img(src='img/logo.svg' alt='Logo')
+          // Right column: content
+          .tm-right-column
+            .tm-content-div
+              // Login section
+              section#login-section.tm-section
+                header
+                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Введите пароль
+                .row
+                  .col-lg-6
+                    form.contact-form(action='/login' method='post')
+                      .form-group
+                        input#login.form-control(type='hidden' name='username' value='unistream-general' required='')
+                      .form-group
+                        textarea#password.form-control(name='password' rows='1' placeholder='Пароль' required='')
+                      button.float-right.tm-button.tm-login-button(type='submit') Войти
