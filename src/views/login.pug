@@ -22,6 +22,10 @@ html
             .tm-content-div
               // Login section
               section#login-section.tm-section
+                if messages.length > 0
+                  .alert.alert-danger
+                    each message in messages
+                      span !{message}
                 header
                   h2.tm-blue-text.tm-section-title.tm-margin-b-30 Введите пароль
                 .row

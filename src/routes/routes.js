@@ -15,7 +15,9 @@ routes.get('/home', async (req, res) => {
 });
 
 routes.get('/login', async (req, res) => {
-  res.render('login');
+  const messages = await req.consumeFlash('error');
+
+  res.render('login', { messages });
 });
 
 routes.get('/', async (req, res) => {
@@ -31,8 +33,9 @@ routes.post('/auth', async (req, res) => {
   const { password } = req.body;
 
   if (username && password) {
-    await User.findOne({ username }, 'password', (err, doc) => {
+    await User.findOne({ username }, 'password', async (err, doc) => {
       if (err || doc.password !== password) {
+        await req.flash('error', 'Введён неправильный пароль');
         res.redirect('/login');
         return console.error(err);
       }

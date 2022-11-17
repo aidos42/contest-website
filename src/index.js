@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import express from 'express';
 import session from 'express-session';
+import { flash } from 'express-flash-message';
 // eslint-disable-next-line import/extensions
 import routes from './routes/routes.js';
 
@@ -27,6 +28,7 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+app.use(flash({ sessionKeyName: 'flashMessage' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(customDirname, 'public')));
