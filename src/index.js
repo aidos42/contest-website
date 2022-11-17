@@ -11,7 +11,7 @@ dotenv.config();
 const filename = fileURLToPath(import.meta.url);
 const customDirname = dirname(filename);
 
-const PORT = process.env.PORT ?? 8080;
+const PORT = process.env.PORT ?? 3000;
 const HOST = '0.0.0.0';
 const oneDay = 1000 * 60 * 60 * 24;
 

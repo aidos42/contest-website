@@ -31,10 +31,10 @@ routes.post('/auth', async (req, res) => {
   const { password } = req.body;
 
   if (username && password) {
-    await User.findOne({ username }, 'password', (err) => {
-      if (err) {
-        res.send('Неправильный пароль');
-        return console.err(err);
+    await User.findOne({ username }, 'password', (err, doc) => {
+      if (err || doc.password !== password) {
+        res.redirect('/login');
+        return console.error(err);
       }
 
       req.session.loggedin = true;
