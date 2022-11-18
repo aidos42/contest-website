@@ -2,7 +2,9 @@ import express from 'express';
 // eslint-disable-next-line import/extensions
 import { Clip, User } from '../models/models.js';
 
-const REGEXP = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+const REGEXP_YOUTUBE_URL = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+// eslint-disable-next-line no-useless-escape
+const REGEXP_YOUTUBE_VIDEO_ID = /^(?:(?:https|http):\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be).*(?<=\/|v\/|u\/|embed\/|shorts\/|watch\?v=)(?<!\/user\/)(?<id>[\w\-]{11})(?=\?|&|$)/;
 
 const routes = express.Router();
 
@@ -51,9 +53,11 @@ routes.post('/auth', async (req, res) => {
 });
 
 routes.post('/new-clip', async (req, res) => {
-  const { name, email, 'clip-url': clipUrl } = req.body;
+  const { name, email, 'clip-url': rawClipUrl } = req.body;
 
-  if (REGEXP.test(clipUrl)) {
+  if (REGEXP_YOUTUBE_URL.test(rawClipUrl)) {
+    const clipUrl = `https://www.youtube.com/embed/${rawClipUrl.match(REGEXP_YOUTUBE_VIDEO_ID).groups.id}`;
+
     const newClip = new Clip({ name, email, clipUrl });
 
     newClip.save((err) => {
@@ -64,10 +68,10 @@ routes.post('/new-clip', async (req, res) => {
 
     await req.flash('info', 'Заявка принята');
 
-    res.redirect(303, '/home');
+    res.redirect(303, '/');
   } else {
-    await req.flash('error', 'Подходят только ссылки для Youtube');
-    res.redirect(303, '/home');
+    await req.flash('error', 'Подходят только ссылки на Youtube');
+    res.redirect(303, '/');
   }
 });
 
