@@ -57,7 +57,7 @@ html
                   each clip in clips
                     .tm-img-container.tm-img-container-1
                       p.tm-participant Участник: !{clip.name}
-                      iframe(width='560' height='315' src=clip.clipUrl title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+                      iframe.lazy(width='560' height='315' data-src=clip.clipUrl title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
               
               // Vote section
               section#vote.tm-section  
@@ -87,6 +87,7 @@ html
           // row
           // container
           // load JS files
+          script(src='https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js')
           script(src='js/jquery-1.11.3.min.js')
           // jQuery (https://jquery.com/download/)
           script(src='js/jquery.magnific-popup.min.js')
@@ -108,4 +109,8 @@ html
             // other options
             });
             });
-            -- The basis was designed by templatemo.com
+          script.
+            (function () {
+            ll = new LazyLoad({});
+            })();
+          // Based on templatemo.com design
