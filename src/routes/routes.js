@@ -2,13 +2,17 @@ import express from 'express';
 // eslint-disable-next-line import/extensions
 import { Clip, User } from '../models/models.js';
 
+const REGEXP = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+
 const routes = express.Router();
 
 routes.get('/home', async (req, res) => {
   if (req.session.loggedin) {
     const clips = await Clip.find({});
+    const errorMessages = await req.consumeFlash('error');
+    const infoMessages = await req.consumeFlash('info');
 
-    res.render('index', { clips });
+    res.render('index', { clips, errorMessages, infoMessages });
   } else {
     res.redirect(303, '/login');
   }
@@ -37,7 +41,6 @@ routes.post('/auth', async (req, res) => {
       if (err || doc.password !== password) {
         await req.flash('error', 'Введён неправильный пароль');
         res.redirect('/login');
-        return console.error(err);
       }
 
       req.session.loggedin = true;
@@ -47,17 +50,25 @@ routes.post('/auth', async (req, res) => {
   }
 });
 
-routes.post('/new-clip', (req, res) => {
+routes.post('/new-clip', async (req, res) => {
   const { name, email, 'clip-url': clipUrl } = req.body;
-  const newClip = new Clip({ name, email, clipUrl });
 
-  newClip.save((err) => {
-    if (err) return console.log(err);
+  if (REGEXP.test(clipUrl)) {
+    const newClip = new Clip({ name, email, clipUrl });
 
-    return console.log('Sucess');
-  });
+    newClip.save((err) => {
+      if (err) return console.log(err);
 
-  res.redirect(303, '/');
+      return console.log('Sucess');
+    });
+
+    await req.flash('info', 'Заявка принята');
+
+    res.redirect(303, '/home');
+  } else {
+    await req.flash('error', 'Подходят только ссылки для Youtube');
+    res.redirect(303, '/home');
+  }
 });
 
 export default routes;

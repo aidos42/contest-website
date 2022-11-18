@@ -10,7 +10,6 @@ html
     link(rel='stylesheet' href='css/magnific-popup.css')
     link(rel='stylesheet' href='css/templatemo-style.css')
   body
-    .container
       .row
         .tm-left-right-container
           // Left column: logo and menu
@@ -31,6 +30,15 @@ html
           // Right column: content
           .tm-right-column
             .tm-content-div
+              .container
+                if errorMessages.length > 0
+                  .alert.alert-danger
+                    each message in errorMessages
+                      span !{message}
+                if infoMessages.length > 0
+                  .alert.alert-success
+                    each message in infoMessages
+                      span !{message}
               // About section
               section#about.tm-section
                 .row
