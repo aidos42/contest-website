@@ -42,7 +42,8 @@ routes.post('/auth', async (req, res) => {
     await User.findOne({ username }, 'password', async (err, doc) => {
       if (err || doc.password !== password) {
         await req.flash('error', 'Введён неправильный пароль');
-        res.redirect('/login');
+
+        return res.redirect('/login');
       }
 
       req.session.loggedin = true;
