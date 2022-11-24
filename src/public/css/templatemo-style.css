@@ -158,6 +158,16 @@ textarea:-ms-input-placeholder {
 	height: 100%;
 }
 
+.red-strong-word {
+  color: red;
+  font-weight: bold;
+}
+
+.endeavour-strong-word {
+  color: #2f5496;
+  font-weight: bold;
+}
+
 /* Media Queries */
 @media (min-width: 576px) {
 	.container { width: 100%; }
