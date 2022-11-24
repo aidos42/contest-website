@@ -21,11 +21,11 @@ html
                 li.tm-nav-item
                   a.tm-nav-item-link(href='#about') О конкурсе
                 li.tm-nav-item
+                  a.tm-nav-item-link(href='#submit') Отправить ролик
+                li.tm-nav-item
                   a.tm-nav-item-link(href='#gallery') Галерея роликов
                 li.tm-nav-item
                   a.tm-nav-item-link(href='#vote') Голосование
-                li.tm-nav-item
-                  a.tm-nav-item-link(href='#submit') Отправить ролик
           // Left column: logo and menu
           // Right column: content
           .tm-right-column
@@ -61,22 +61,6 @@ html
                       b 100 000 рублей!
                   .col-lg-4.col-md-5.col-sm-12.col-xs-12.pull-lg-8.pull-md-7.tm-about-img-container
                     img.img-fluid(src='img/about-contest-picture.jpg' alt='Image')
-              // Gallery section
-              section#gallery.tm-section
-                header
-                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Галерея роликов
-                .tm-gallery-container.tm-gallery-1
-                  each clip in clips
-                    .tm-img-container.tm-img-container-1
-                      p.tm-participant Участник: !{clip.name}
-                      iframe.lazy(width='560' height='315' data-src=clip.clipUrl title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
-              
-              // Vote section
-              section#vote.tm-section  
-                header
-                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Голосование
-                .tm-vote
-                  iframe(src='https://docs.google.com/forms/d/e/1FAIpQLScamV186lXQEraWxDeiWJ6bI5IEyPxKEzJwCDFQMyInEqUImA/viewform?embedded=true' width='640' height='786' frameborder='0' marginheight='0' marginwidth='0')
 
               // Submit section
               section#submit.tm-section
@@ -94,7 +78,32 @@ html
                       button.float-right.tm-button(type='submit') Отправить
                   .col-lg-6.tm-contact-right
                     p
-                      | Nullam vivera fermentum purus id blandit. Phasellus lacus mi, porta vel sodales nec, faucibus non eros. Nulla at quam vel risus laoreet tincidunt in in sem.
+                      | Чтобы участвовать в конкуре — нужно загрузить ролик на Youtube. Инструкцию для загрузки можно почитать по 
+                      b
+                        a(href='https://support.google.com/youtube/answer/57407?hl=ru&co=GENIE.Platform%3DDesktop&oco=0#zippy=') этой ссылке
+                      | .
+                    p
+                      b Обратите внимание
+                      | , что ролик должен быть 
+                      b
+                        a(href='https://support.google.com/youtube/answer/157177#privacy_settings&zippy=%2C%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF-%D0%BF%D0%BE-%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B5') доступен только в режиме «по ссылке».
+
+              // Gallery section
+              section#gallery.tm-section
+                header
+                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Галерея роликов
+                .tm-gallery-container.tm-gallery-1
+                  each clip in clips
+                    .tm-img-container.tm-img-container-1
+                      p.tm-participant Участник: !{clip.name}
+                      iframe.lazy(width='560' height='315' data-src=clip.clipUrl title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+              
+              // Vote section
+              section#vote.tm-section  
+                header
+                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Голосование
+                .tm-vote
+                  iframe(src='https://docs.google.com/forms/d/e/1FAIpQLScamV186lXQEraWxDeiWJ6bI5IEyPxKEzJwCDFQMyInEqUImA/viewform?embedded=true' width='640' height='786' frameborder='0' marginheight='0' marginwidth='0')
           // Right column: content
           // row
           // container
