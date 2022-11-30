@@ -56,6 +56,12 @@ routes.post('/auth', async (req, res) => {
 routes.post('/new-clip', async (req, res) => {
   const { name, email, 'clip-url': rawClipUrl } = req.body;
 
+  if (!email.includes('unistream')) {
+    await req.flash('error', 'В заявке должна быть рабочая почта с доменом unistream');
+
+    return res.redirect(303, '/');
+  }
+
   if (REGEXP_YOUTUBE_URL.test(rawClipUrl)) {
     const clipUrl = `https://www.youtube.com/embed/${rawClipUrl.match(REGEXP_YOUTUBE_VIDEO_ID).groups.id}`;
 
@@ -69,10 +75,11 @@ routes.post('/new-clip', async (req, res) => {
 
     await req.flash('info', 'Заявка принята');
 
-    res.redirect(303, '/');
+    return res.redirect(303, '/');
   } else {
     await req.flash('error', 'Подходят только ссылки на Youtube');
-    res.redirect(303, '/');
+
+    return res.redirect(303, '/');
   }
 });
 
