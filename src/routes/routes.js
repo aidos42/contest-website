@@ -70,7 +70,9 @@ routes.post('/new-clip', async (req, res) => {
     newClip.save((err) => {
       if (err) return console.log(err);
 
-      return console.log('Sucess');
+      const now = new Date().toLocaleString();
+
+      return console.log(`Clip name: ${name} email: ${email} time: ${now}`);
     });
 
     await req.flash('info', 'Заявка принята');
