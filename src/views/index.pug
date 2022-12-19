@@ -21,11 +21,12 @@ html
                 li.tm-nav-item
                   a.tm-nav-item-link(href='#about') О конкурсе
                 li.tm-nav-item
+                  a.tm-nav-item-link(href='#vote') Голосование
+                //li.tm-nav-item
                   a.tm-nav-item-link(href='#submit') Отправить ролик
                 li.tm-nav-item
                   a.tm-nav-item-link(href='#gallery') Галерея роликов
-              //  li.tm-nav-item
-                  a.tm-nav-item-link(href='#vote') Голосование
+
           // Left column: logo and menu
           // Right column: content
           .tm-right-column
@@ -49,21 +50,28 @@ html
                       | Алло, мы ищем 
                       span.red-strong-word SUPER
                       |  таланты!
-                      | В преддверии нового года 
-                      span.endeavour-strong-word ЮНИСТРИМ
-                      |  запускает конкурс талантов среди сотрудников.
+                      | 19.12.22 стартовал второй этап конкурса – 
+                      span.red-strong-word ГОЛОСОВАНИЕ
+                      |.
                     p
-                      | Если днем ты профессионал банковского дела, а вечером: певец, художник, танцор, спортсмен, музыкант, модельер, кондитер, либо занимаешься какой-то иной творческой деятельностью — участвуй в конкурсе!
-                    h3 Как подать заявку?
+                      | Участники уже определены, а ролики выложены! Теперь каждый сотрудник 
+                      span.endeavour-strong-word ЮНИСТРИМ Банка 
+                      | может отдать свой голос за кого-то из коллег.
+                    h3 Правила голосования
+                    ul
+                      li 1 сотрудник = 1 голос
+                      li Голосовать за себя нельзя
+                      li Чтобы голос учелся при подсчете – нужно указать свою рабочую почту
                     p
-                      b До 18 декабря
-                      |  загрузи ролик, демонстрирующий твой super-талант и получи шанс выиграть 
-                      b 100 000 рублей!
+                      | Успей поддержать коллег до 
+                      b 25.12.2022 
+                      | г.
+                      | Форма для голосования расположена ниже.
                   .col-lg-4.col-md-5.col-sm-12.col-xs-12.pull-lg-8.pull-md-7.tm-about-img-container
                     img.img-fluid(src='img/about-contest-picture.jpg' alt='Image')
 
               // Submit section
-              section#submit.tm-section
+              //section#submit.tm-section
                 header
                   h2.tm-blue-text.tm-section-title.tm-margin-b-30 Отправить ролик
                 .row
@@ -88,6 +96,13 @@ html
                       b
                         a(target='_blank' href='https://support.google.com/youtube/answer/157177#privacy_settings&zippy=%2C%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF-%D0%BF%D0%BE-%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B5') доступен только в режиме «по ссылке».
 
+              // Vote section
+              section#vote.tm-section  
+                header
+                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Голосование
+                .tm-vote
+                  iframe(src='https://docs.google.com/forms/d/e/1FAIpQLScqWc_57SoYv5yGEN9tZOIezUFXlDBSYTScH0YSph-laLe0Ng/viewform?embedded=true' width='640' height='1026' frameborder='0' marginheight='0' marginwidth='0')
+
               // Gallery section
               section#gallery.tm-section
                 header
@@ -97,13 +112,7 @@ html
                     .tm-img-container.tm-img-container-1
                       p.tm-participant Участник: !{clip.name}
                       iframe.lazy(width='560' height='315' data-src=clip.clipUrl title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
-              
-              // Vote section
-              //.section#vote.tm-section  
-                header
-                  h2.tm-blue-text.tm-section-title.tm-margin-b-30 Голосование
-                .tm-vote
-                  iframe(src='https://docs.google.com/forms/d/e/1FAIpQLScamV186lXQEraWxDeiWJ6bI5IEyPxKEzJwCDFQMyInEqUImA/viewform?embedded=true' width='640' height='786' frameborder='0' marginheight='0' marginwidth='0')
+          
           // Right column: content
           // row
           // container
